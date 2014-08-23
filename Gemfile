@@ -36,6 +36,7 @@ gem 'rename'
 
 # CAS Auth, https://gist.github.com/baygross/2054898
 # gem 'rubycas-client-rails'
+gem 'net-ldap'
 gem 'rubycas-client', git: 'https://github.com/rubycas/rubycas-client'
 
 # gem 'capistrano', group: :development   # Deploy with Capistrano
