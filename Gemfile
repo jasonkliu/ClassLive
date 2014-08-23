@@ -34,9 +34,9 @@ gem 'devise'
 # Rename your application, Rails 4.0.x https://github.com/morshedalam/rename
 gem 'rename'
 
-# CAS Auth
-gem 'rubycas-client-rails'
-gem 'rubycas-client', '2.2.1'
+# CAS Auth, https://gist.github.com/baygross/2054898
+# gem 'rubycas-client-rails'
+gem 'rubycas-client', git: 'https://github.com/rubycas/rubycas-client'
 
 # gem 'capistrano', group: :development   # Deploy with Capistrano
 # gem 'debugger'                          # similar to ruby-debug
