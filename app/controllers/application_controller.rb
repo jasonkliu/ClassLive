@@ -3,23 +3,23 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  # Add this before filter to force CAS Authentication on all controllers + actions
-  before_filter CASClient::Frameworks::Rails::Filter, unless: :skip_login?
+  # Add this before action to force CAS Authentication on all controllers + actions
+  before_action CASClient::Frameworks::Rails::Filter, unless: :skip_login?
 
-  # Add this before filter to set a local variable for the current user from CAS session
-  before_filter :getMe
+  # Add this before action to set a local variable for the current user from CAS session
+  before_action :getMe
 
   protected
 
   def getMe
-    @me = User.find_or_create_by(netid: session[:cas_user] )
-    if !@me
+    current_user = User.find_or_create_by(netid: session[:cas_user] )
+    if !current_user
       redirect_to :root
       return false
     end
   end
 
-  # hack for skip_before_filter with CAS
+  # hack for skip_before_action with CAS
   # overwrite this method (with 'true') in any controller to skip CAS auth
   def skip_login?
     false
