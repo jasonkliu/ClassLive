@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :message => "Conflicting email address."
 
   # Callbacks (ONLY works on the Yale Network)
-  # after_create :populateLDAP
+  after_create :populateLDAP
 
   # Accessors
   def name
