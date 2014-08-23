@@ -131,6 +131,10 @@
 		listAddRoom('ECON 255', 'Intro to MacroFinanace', 5);
 		listAddRoom('ECON 255', 'Intro to MacroFinanace', 5);
 		listAddRoom('ECON 255', 'Intro to MacroFinanace', 5);
+		$('.searchbutton').click(function() {
+			var course = $('input[name=course').val();
+			// Do searching
+		});
 	});
 	function listAddRoom(number, name, count) {
 		$('.list tr:last').after('<tr class="room"><td>' + number + '</td><td>' + name
