@@ -1,0 +1,24 @@
+<h2> Provide personal information</h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+<div><%= f.label :first_name %><br />
+ 	<%= f.text_field :first_name, :autofocus => true, :required => true %></div>
+
+<div><%= f.label :last_name %><br />
+	<%= f.text_field :last_name, :required => true %></div>
+
+<div><%= f.label :email %><br />
+  	<%= f.email_field :email, :required => true %></div>
+
+<div><%= f.label :college %><br />
+	<%= f.options_for_select ([['BK', 1], ['BR', 2], ['CC', 3], 
+['DC', 4], ['ES', 5], ['JE', 6], ['MC', 7], ['PC', 8], 
+['SY', 9], ['SM', 10], ['TD', 11], ['TC', 12]), :required => true %></div>
+
+	<div><%= f.submit "Submit" %></div>
+
+<% end %>
+
+<%= render "devise/shared/links" %>
