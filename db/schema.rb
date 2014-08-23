@@ -11,19 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140823175158) do
+ActiveRecord::Schema.define(version: 20140823180255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "chats", force: true do |t|
-    t.string  "coursename"
-    t.integer "course_id"
-  end
-
-  create_table "courses", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "coursename"
+    t.string "course_id"
   end
 
   create_table "messages", force: true do |t|
@@ -31,7 +26,7 @@ ActiveRecord::Schema.define(version: 20140823175158) do
     t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "course_id"
+    t.string   "course_id"
   end
 
   create_table "users", force: true do |t|
