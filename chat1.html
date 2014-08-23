@@ -1,0 +1,32 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script>
+    $('#chat').submit(function() {
+        var url = '',
+            msg = $('input[name=msg]').val();
+        $.post(url, msg, function(data) {
+            $('.msgs').append('<br />' + msg);
+        }).fail(function() {
+            $('.error').html('Error!');
+        });
+        return false;
+    });
+    
+    function update() {
+        url ='';
+        $.get(url, function(data) {
+            $('.msgs').append(data);
+            setTimeOut(update, 1000);
+        });
+    }
+    setTimeOut(update, 1000);
+</script>
+
+<div class="msgs">
+
+</div>
+<form id="chat">
+    <input name="msg" />
+    <input type="submit" value="Send" />
+</form>
+<div class="error"></div>
