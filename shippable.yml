@@ -1,0 +1,36 @@
+# Documentation: http://docs.shippable.com/en/latest/languages/ruby.html
+
+# Build Environment
+build_environment: ubuntu1204
+
+# Language 
+language: ruby
+
+# Version Numbers
+#- 2.0.0, 2.1.2
+rvm:
+ - 1.9.3
+
+# Environment Variables APP_NAME is for heroku
+env:
+ global:
+   - APP_NAME=classlive
+   - DB=postgresql
+
+# Run before the script
+# - psql -c 'create database AppRails' -U postgres
+before_script:
+ - cp config/database.yml.example.pg config/database.yml
+ - RAILS_ENV=test bundle exec rake db:create db:migrate --trace
+
+# Jobs to test on the script
+script:
+ - RAILS_ENV=test bundle exec rspec --backtrace
+
+# Notifications
+notifications:
+    email: false
+
+# Run after the script (ignore git checkout master)
+after_success:
+ - git push -f git@heroku.com:$APP_NAME.git master
