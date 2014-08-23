@@ -1,4 +1,11 @@
 class ChatsController < ApplicationController
+  skip_before_action :getMe, only: [:index]
+  skip_before_filter :verify_authenticity_token
+
+  def skip_login?
+    true
+  end
+
 	def index
 		@chats = Chat.all
 		respond_to do |format|
