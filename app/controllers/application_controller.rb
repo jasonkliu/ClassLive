@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session
 
   # Add this before action to force CAS Authentication on all controllers + actions
   before_action CASClient::Frameworks::Rails::Filter, unless: :skip_login?
