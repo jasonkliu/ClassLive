@@ -22,7 +22,7 @@ class ChatsController < ApplicationController
 					format.json { render :json => new_messages.to_json }
 				end
 			else
-				render :json => {}
+				render :json => { hello: 'hello'}
 			end
 		else
 			render :json => {}
