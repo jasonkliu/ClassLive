@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def getMe
-    current_user = User.find_or_create_by(netid: session[:cas_user] )
+    current_user = User.find_or_create_by_netid(session[:cas_user])
     if !current_user
       redirect_to :root
       return false
