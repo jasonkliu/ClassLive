@@ -1,0 +1,18 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script>
+	$(function() {
+		relist();
+		$('input[name=relist]').click(function() {relist();});
+	});
+	function relist() {
+		$.get(url, function(data) {
+			$('.rooms').html(data);
+		});
+	});
+</script>
+
+<input type="button" name="relist" value="Refresh" />
+<table class="rooms">
+
+</table>

@@ -1,16 +1,18 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <script>
-    $('#chat').submit(function() {
-        var url = '',
-            msg = $('input[name=msg]').val();
-        $.post(url, msg, function(data) {
-            $('.msgs').append('<br />' + msg);
-        }).fail(function() {
-            $('.error').html('Error!');
-        });
-        return false;
-    });
+    $(function() {
+		$('#chat').submit(function() {
+			var url = '',
+				msg = $('input[name=msg]').val();
+			$.post(url, msg, function(data) {
+				$('.msgs').append('<br />' + msg);
+			}).fail(function() {
+				$('.error').html('Error!');
+			});
+			return false;
+		});
+	});
     
     function update() {
         url ='';
