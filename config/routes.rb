@@ -1,5 +1,5 @@
 ClassLive::Application.routes.draw do
-  get 'chats/index'
+  get 'chats/new_messages'
 
   resources :users
   resources :chats
