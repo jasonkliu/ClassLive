@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   # Callbacks
   after_create :populateLDAP
 
+  has_many :messages, primary_key: "netid", foreign_key: "netid"
+
   # Accessors
   def name
     self.fname.capitalize + " " + self.lname.capitalize
