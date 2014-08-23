@@ -20,8 +20,8 @@ env:
 # Run before the script
 # - psql -c 'create database AppRails' -U postgres
 before_script:
- - cp config/database.yml.example.pg config/database.yml
- - RAILS_ENV=test bundle exec rake db:create db:migrate --trace
+ #- cp config/database.yml.example.pg config/database.yml
+ #- RAILS_ENV=test bundle exec rake db:create db:migrate --trace
 
 # Jobs to test on the script
 script:
