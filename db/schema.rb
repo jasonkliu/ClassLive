@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140823164239) do
+ActiveRecord::Schema.define(version: 20140823180255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chats", force: true do |t|
+    t.string "coursename"
+    t.string "course_id"
+  end
+
+  create_table "messages", force: true do |t|
+    t.string   "netid"
+    t.string   "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "course_id"
+  end
 
   create_table "users", force: true do |t|
     t.datetime "created_at"
