@@ -270,6 +270,7 @@ DEPENDENCIES
   net-ldap
   pg
   rack-handlers
+  rails (= 4.1.5)
   rails3_serve_static_assets!
   rails_12factor
   rails_log_stdout!
