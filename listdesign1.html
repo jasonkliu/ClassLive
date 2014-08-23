@@ -121,29 +121,82 @@
 </style>
 
 <script>
-	var listHeadHTML;
+	var listClasses = [
+		{'course': 'ECON 255', 'name': 'Intro to MacroFinance', '#': 5},
+		{'course': 'CPSC 234', 'name': 'Software stuff', '#': 0},
+		{'course': 'POLI 321', 'name': 'Policsicjwaoiewjo;glak', '#': 0},
+		{'course': 'ENGL 113', 'name': 'Some English Course', '#': 10}
+	];
+	[{'course': 'ENGL 113', '#': 20}, {'course': 'POLI 321', '#', 0}]
+	var listHeadHTML, searching = false;
 	$(function() {
 		listHeadHTML = $('.list .head').html();
-		listAddRoom('ECON 255', 'Intro to MacroFinanace', 5);
-		listAddRoom('ECON 255', 'Intro to MacroFinanace', 5);
-		listAddRoom('ECON 255', 'Intro to MacroFinanace', 5);
-		listAddRoom('ECON 255', 'Intro to MacroFinanace', 5);
-		listAddRoom('ECON 255', 'Intro to MacroFinanace', 5);
-		listAddRoom('ECON 255', 'Intro to MacroFinanace', 5);
-		listAddRoom('ECON 255', 'Intro to MacroFinanace', 5);
+		listSort();
 		$('.searchbutton').click(function() {
-			var course = $('input[name=course').val();
-			// Do searching
+			listSearch();
 		});
+		$('input[name=course').click(function() {
+			$(this).val('');
+			listSearch();
+		});
+		$('input[name=course').change(function() {
+			listSearch();
+		});
+		relist();
 	});
 	function listAddRoom(number, name, count) {
 		$('.list tr:last').after('<tr class="room"><td>' + number + '</td><td>' + name
 			+ '</td><td>' + count
 			+ '</td><td class="joincell"><a class="join">Join</a></td></tr>');
 	}
+	function listUpdate(number, count) {
+		for (var i = 0; i < listClasses.length; i ++) {
+			if (listClasses[i]['course'] == number) {
+				listClasses[i]['#'] = count;
+				break;
+			}
+		}
+	}
 	function listReset() {
 		$('.list').html('<tr class="head"></tr>');
 		$('.list .head').html(listHeadHTML);
+	}
+	function listSearch() {
+		var course = $('input[name=course').val().toUpperCase();
+		if (course.length == 0) {
+			searching = false;
+			listDisplay();
+		} else {
+			listReset();
+			for (var i = 0; i < listClasses.length; i ++) {
+				if (listClasses[i]['course'].indexOf(course) >= 0) {
+					listAddRoom(listClasses[i]['course'], listClasses[i]['name'], listClasses[i]['#']);
+				}
+			}
+			searching = true;
+		}
+	}
+	function listDisplay() {
+		listReset();
+		for (var i = 0; i < listClasses.length; i ++) {
+			listAddRoom(listClasses[i]['course'], listClasses[i]['name'], listClasses[i]['#']);
+		}
+	}
+	function listSort() {
+		listClasses = listClasses.sort(function(a, b) {
+			return (b['#'] > a['#']) ? 1 : ((b['#'] < a['#']) ? -1 : 0);
+		});
+		listDisplay();
+	}
+	function relist() {
+		// Where we get JSON object with update to participant numbers
+		var url = '';
+		$.get(url, function(data) {
+			data = $.parseJSON(data);
+			listClasses = $.merge(data, listClasses);
+			if (!searching) listDisplay();
+			setTimeout(function() {relist();}, 5000);
+		});
 	}
 </script>
 

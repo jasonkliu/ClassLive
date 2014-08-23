@@ -94,6 +94,25 @@
 		chatAppend('George', 'blahblahblah');
 		chatAppend('Tom', 'stop spamming');
 		chatAppend('You', 'aglwkej;gelawk');
+		$('input[name=msg]').bind("enterKey", function(e) {
+			var url = '';
+			data = {
+				"message": {
+					"course_id": "ENGL 113",
+					"content": $(this).val(),
+					"netid": "abc123"
+				}
+			};
+			$.post(url, data, function(data) {
+				$('.msgs').append(data);
+				setTimeOut(update, 1000);
+			});
+		}).keyup(function(e) {
+			if (e.keyCode == 13) {
+				$(this).trigger("enterKey");
+			}
+		});
+		update();
 	});
 	function chatAppendPlain(chat) {
 		$('.chat div').append(chat);
@@ -107,6 +126,14 @@
 		$('.chat div').animate({
 			scrollTop: $('.chat div').height()
 		}, 500);
+	}
+	function update() {
+		var url = '';
+		data = {'course_id': 'ENGL 113'};
+		$.post(url, data, function(data) {
+			$('.msgs').append(data);
+			setTimeOut(update, 1000);
+		});
 	}
 </script>
 
