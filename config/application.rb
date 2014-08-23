@@ -7,6 +7,9 @@ Bundler.require(*Rails.groups(assets: %w(development test)))
 
 module ClassLive
   class Application < Rails::Application
+    # Our CAS auth url
+    config.rubycas.cas_base_url = 'https://secure.its.yale.edu/cas/'
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
