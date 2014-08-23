@@ -1,0 +1,135 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<style>
+	html, body {
+		margin: 0;
+		height: 100%;
+		font: 400 16px/30px 'Open Sans';
+		color: #222222;
+		letter-spacing: 0.5px;
+		background-color: #ededea;
+	}
+	navbar {
+		display: block;
+		height: 60px;
+		padding: 0 30px;
+		background-color: #de5842;
+		border-bottom: 1px solid #ca1313;
+	}
+	navbar .logo {
+		font-size: 30px;
+		font-weight: 600;
+		line-height: 60px;
+		float: left;
+		color: #fefefe;
+		letter-spacing: 1px;
+	}
+	room {
+		display: block;
+		padding: 30px;
+		
+	}
+	room .back {
+		background: url('back.png') no-repeat center center;
+		background-size: contain;
+		height: 30px;
+		width: 70px;
+		opacity: 0.5;
+		display: inline-block;
+		cursor: pointer;
+	}
+	room .back:hover {
+		opacity: 1;
+	}
+	room .top {
+		color: #888888;
+		margin-bottom: 20px;
+		vertical-align: middle;
+	}
+	room .room {
+		padding: 0;
+		width: 100%;
+		border-collapse: separate;
+		line-height: 30px;
+	}
+	room input[type=text] {
+		height: 30px;
+		padding: 5px 10px;
+		border: 1px solid #444444;
+		font: inherit;
+		width: 100%;
+	}
+	room .room .chat {
+		width: 66%;
+		vertical-align: bottom;
+	}
+	room .room .chat div {
+		width: 100%;
+		max-height: 500px;
+		overflow-y: auto;
+	}
+	room .room .people {
+		width: 33%;
+		height: 500px;
+		vertical-align: top;
+		border-left: 1px solid #444444;
+		padding-left: 30px;
+	}
+	room .room .input {
+		padding-top: 30px;
+	}
+</style>
+
+<script>
+	$(function() {
+		chatAppend('George', 'blahblahblah');
+		chatAppend('Mike', 'egaewgeaweggwae');
+		chatAppend('Tom', 'akgewkjewakl;g');
+		chatAppend('George', 'blahblahblah');
+		chatAppend('George', 'blahblahblah');
+		chatAppend('George', 'blahblahblah');
+		chatAppend('George', 'blahblahblah');
+		chatAppend('George', 'blahblahblah');
+		chatAppend('George', 'blahblahblah');
+		chatAppend('George', 'blahblahblah');
+		chatAppend('Tom', 'stop spamming');
+		chatAppend('You', 'aglwkej;gelawk');
+	});
+	function chatAppendPlain(chat) {
+		$('.chat div').append(chat);
+		chatBottom();
+	}
+	function chatAppend(name, chat) {
+		$('.chat div').append(name + ': ' + chat + '<br />');
+		chatBottom();
+	}
+	function chatBottom() {
+		$('.chat div').animate({
+			scrollTop: $('.chat div').height()
+		}, 500);
+	}
+</script>
+
+<navbar>
+	<div class="logo">ClassLive</div>
+</navbar>
+<room>
+	<div class="top"><div class="back"></div><span class="roomName">ECON 255 Intro to MacroFinance</span></div>
+	<table class="room">
+		<tr style="height: 500px;">
+			<td class="chat"><div></div>
+			</td>
+			<td class="people">
+				You<br />
+				George<br />
+				Mike<br />
+				Tom<br />
+			</td>
+		</tr>
+		<tr>
+			<td class="input">
+				<input type="text" name="msg" />
+			</td>
+		</tr>
+	</table>
+</room>
